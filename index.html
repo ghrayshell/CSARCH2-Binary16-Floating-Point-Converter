@@ -1,119 +1,191 @@
+<!-- CSARCH2 SIMULATION PROJECT
+
+    >>> S12 GROUP 5 <<<
+    > BALANON, Rovic E.
+    > CUSTER, Mark John T.
+    > DE RAMOS, Ghrazielle Rei A.
+    > GUTIERREZ, Carlos Kristoffer P.
+    > ONG, Barron Brandon Conroy L.
+
+    PROJECT SPECIFICATIONS:
+    * IEEE-754 Binary-16 floating point converter (including all special cases)
+        • Input: (1) binary mantissa and base-2 (i.e., 101.01x25) (2) Decimal and base-10 (i.e.
+            65.0x103) Also should support special cases (i.e., NaN).
+        • Output: (1) binary output with space between section (2) its hexadecimal equivalent (3)
+            with option to output in text file.
+    
+-->
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="desktop-interface">
-      <div class="simulation-interface">
-        <div class="credits">
-          <p class="text-wrapper">ONG, Barron Brandon Conroy L.</p>
-          <div class="div">GUTIERREZ, Carlos Kristoffer P.</div>
-          <p class="p">DE RAMOS, Ghrazielle Rei A.</p>
-          <div class="text-wrapper-2">CUSTER, Mark John T.</div>
-          <div class="text-wrapper-3">BALANON, Rovic A.</div>
-          <div class="text-wrapper-4">CREATED BY</div>
-        </div>
-        <div class="information">
-          <div class="github-link">
-            <div class="overlap-group">
-              <div class="text-wrapper-5">https://github.com/ghrayshell/CSARCH2-Binary16-Floating-Point-Converter</div>
-            </div>
-          </div>
-          <p class="this-simple-online">
-            This simple online converter allows users to easily get the Binary-16 and Hexadecimal equivalent of any
-            Floating-Point number representation—all special cases (NaN, Denormalize, Infinite, and Zero) included.
-            <br /><br />This is an open source project available for viewing on GitHub using the following link:
-          </p>
-          <div class="text-wrapper-6">BINARY-16 FLOATING POINT CONVERTER</div>
-        </div>
-        <div class="instructions">
-          <div class="overlap">
-            <p class="choose-your-desired">
-              Choose your desired input format from the dropdown<br />Type-in your desired number (Binary or Decimal)<br />Enter
-              your desired exponent<br />Click the “Convert Now” button<br />View the result on the output box at the
-              bottom<br />Need the results? Save the results on your computer!<br />Reset the input values to make
-              another conversion!
-            </p>
-            <div class="text-wrapper-7">HOW TO USE</div>
-          </div>
-        </div>
-        <div class="output-section">
-          <div class="overlap-2">
-            <div class="output-frame">
-              <div class="overlap-3">
-                <div class="output-display">
-                  <div class="overlap-4">
-                    <div class="binary-output">
-                      <div class="text-wrapper-8">Fractional Part</div>
-                      <div class="overlap-group-2">
-                        <div class="fractional-box"></div>
-                        <div class="exponent-box"></div>
-                        <div class="sample-binary">
-                          <div class="text-wrapper-9">10 1010 1011</div>
-                          <div class="text-wrapper-10">101 01</div>
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="stylesheets/globals.css" />
+        <link rel="stylesheet" href="stylesheets/style.css" />
+    </head>
+
+    <body>
+        <div class="desktop-interface">
+            <div class="simulation-interface">
+
+                <div class="information">
+                    <div class="project-title">BINARY-16 FLOATING POINT CONVERTER</div>
+
+                    <p class="project-description">
+                        This simple online converter allows users to easily get the Binary-16 and Hexadecimal equivalent of any
+                        Floating-Point number representation—all special cases (NaN, Denormalize, Infinite, and Zero) included.
+                        <br /><br />
+                        This is an open source project available for viewing on GitHub using the following link:
+                    </p>
+
+                    <div class="github-link">
+                        <a href="https://github.com/ghrayshell/CSARCH2-Binary16-Floating-Point-Converter" target="_blank">
+                            <div class="overlap-group">
+                                <div class="text-wrapper-5">https://github.com/ghrayshell/CSARCH2-Binary16-Floating-Point-Converter</div>
+                            </div> 
+                        </a>
+                    </div>                    
+                </div>
+
+                <div class="instructions">
+                    <div class="overlap">
+                        <div class="text-wrapper-7">HOW TO USE</div>
+                        <p class="steps">
+                            <b>1.</b> Choose your desired input format from the dropdown<br />
+                            <b>2.</b> Type-in your desired number (Binary or Decimal)<br />
+                            <b>3.</b> Enter your desired exponent<br />
+                            <b>4.</b> Click the “Convert Now” button<br />
+                            <b>5.</b> View the result on the output box at the bottom<br />
+                            <b>6.</b> Need the results? Save the results on your computer!<br />
+                            <b>7.</b> Reset the input values to make another conversion!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="credits">
+                    <div class="text-wrapper-4">CREATED BY</div>
+                    <div class="barron">ONG, Barron Brandon Conroy L.</div>
+                    <div class="carlos">GUTIERREZ, Carlos Kristoffer P.</div>
+                    <div class="ghray">DE RAMOS, Ghrazielle Rei A.</div>
+                    <div class="custer">CUSTER, Mark John T.</div>
+                    <div class="rovic">BALANON, Rovic A.</div>
+                </div>
+
+                <div class="input-section">
+                    <div class="overlap-6">
+                        <div class="input-frame">
+                            <div class="input-display">
+
+                                <!-- USE THIS PART PARA SA BINARY/DECIMAL & EXPONENT INPUT -->
+                                <div class="actual-input">
+                                    <input class="input-prompt-wrapper" placeholder="Enter Binary Mantissa..."></input>
+
+                                    <div class="text-wrapper-21">Binary Mantissa</div>
+                                    <div class="base-number">&#215;2</div>
+
+                                    <input class="exponent-prompt-wrapper" placeholder="Exponent..."></input>
+                                </div>
+                                <!-- INPUT NG NUMBERS UNTIL DITO -->
+
+                                <div class="input-format">
+                                    <div class="text-wrapper-21">Input Format</div>
+
+                                    <!-- USE THIS SELECTOR PANG INPUT FORMAT -->
+                                    <select class="format-dropdown pointer">
+                                        <option value="binary">Binary (base-2)</option>
+                                        <option value="binary">Decimal (base-10)</option>
+                                    </select>
+                                    <!-- END OF SELECTOR -->
+
+                                    <!-- USE THIS TO OUTPUT TYPE OF SPECIAL CASE DETECTED -->
+                                    <div class="text-wrapper-22">Special Case Detector</div>
+                                    <div class="special-case-box not-allowed"></div>
+                                    <!-- END OF SPECIAL CASE -->
+                                </div>
+
+                                <!-- USE THESE BUTTONS FOR CONVERT & RESET -->
+                                <button class="convert-button pointer">
+                                    <div class="text-wrapper-23">CONVERT NOW</div>
+                                </button>
+
+                                <button class="reset-button pointer">
+                                    <div class="text-wrapper-24">RESET VALUES</div>
+                                </button>
+                                <!-- UNTIL DITO ANG BUTTONS -->
+
+
+                            </div>
                         </div>
-                      </div>
-                      <div class="text-wrapper-11">Exponent Bits</div>
-                      <div class="text-wrapper-12">Sign Bit</div>
-                      <div class="sign-box"></div>
-                      <div class="text-wrapper-13">BINARY-16</div>
+
+                        <img class="img" src="https://c.animaapp.com/2zqGcCpL/img/input-section-title@2x.png" />
                     </div>
-                    <div class="hexadecimal-output">
-                      <div class="overlap-5">
-                        <div class="HEX"></div>
-                        <div class="HEX-2"></div>
-                        <div class="HEX-3"></div>
-                        <div class="HEX-4"></div>
-                        <div class="sample-HEX-data">
-                          <div class="text-wrapper-14">D</div>
-                          <div class="text-wrapper-15">6</div>
-                          <div class="text-wrapper-16">A</div>
-                          <div class="text-wrapper-17">B</div>
-                          <div class="text-wrapper-18">1</div>
+                </div>
+
+                <div class="output-section">
+                    <div class="overlap-2">
+                        <div class="output-frame">
+                            <div class="overlap-3">
+                                <div class="output-display">
+                                    <div class="overlap-4">
+                                        <div class="binary-output">
+                                            <div class="text-wrapper-13">BINARY-16</div>
+
+                                            <div class="text-wrapper-8">Fractional Part</div>
+                                            <div class="text-wrapper-11">Exponent Bits</div>
+                                            <div class="text-wrapper-12">Sign Bit</div>
+                                            <div class="sign-box not-allowed"></div>
+                                            
+                                            <div class="overlap-group-2">
+                                                <div class="fractional-box not-allowed"></div>
+                                                <div class="exponent-box not-allowed"></div>
+
+                                                <!-- USE THIS PART PARA SA BINARY-16 OUTPUT -->
+                                                <div class="BINARY-VALUES">
+                                                    <div class="sign-bit">X</div> <!-- One Digit -->
+                                                    <div class="exponent-bit">XXX XX</div> <!-- 5 Digits (Follow 3-2 spacing) -->
+                                                    <div class="fractional-part">XX XXXX XXXX</div> <!-- 10 Digits (Follow 2-4-4 spacing) -->
+                                                </div>
+                                                <!-- BINARY-16 UNTIL DITO -->
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="hexadecimal-output">
+                                            <div class="overlap-5">
+                                                <div class="text-wrapper-19">HEXADECIMAL</div>
+
+                                                <div class="HEX-BOX not-allowed"></div>
+                                                <div class="HEX-BOX-2 not-allowed"></div>
+                                                <div class="HEX-BOX-3 not-allowed"></div>
+                                                <div class="HEX-BOX-4 not-allowed"></div>
+
+                                                <!-- USE THIS PART PARA SA HEXADECIMAL OUTPUT -->
+                                                <div class="HEX-VALUES">
+                                                    <div class="HEX-1">X</div>
+                                                    <div class="HEX-2">X</div>
+                                                    <div class="HEX-3">X</div>
+                                                    <div class="HEX-4">X</div>
+                                                </div>
+                                                <!-- HEXADECIMAL UNTIL DITO -->
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- USE THIS BUTTON TO SAVE IN TEXT FILE -->
+                                <button class="save-button pointer">
+                                    <div class="text-wrapper-20">SAVE RESULT</div>
+                                </button>
+                                <!-- UNTIL HERE LANG SAVE BUTTON -->
+                                
+                            </div>
                         </div>
-                        <div class="text-wrapper-19">HEXADECIMAL</div>
-                      </div>
+                        <img class="img" src="https://c.animaapp.com/2zqGcCpL/img/output-section-title@2x.png" />
                     </div>
-                  </div>
                 </div>
-                <div class="save-button"><div class="text-wrapper-20">SAVE RESULT</div></div>
-              </div>
             </div>
-            <img class="img" src="https://c.animaapp.com/2zqGcCpL/img/output-section-title@2x.png" />
-          </div>
         </div>
-        <div class="input-section">
-          <div class="overlap-6">
-            <div class="input-frame">
-              <div class="input-display">
-                <div class="actual-input">
-                  <div class="exponent-prompt-wrapper"><div class="exponent-prompt">Exponent...</div></div>
-                  <div class="base-number">x2</div>
-                  <div class="input-prompt-wrapper"><div class="input-prompt">Enter the Mantissa...</div></div>
-                  <div class="text-wrapper-21">Binary Mantissa</div>
-                </div>
-                <div class="input-format">
-                  <div class="special-case-box"></div>
-                  <div class="text-wrapper-22">Special Case Detector</div>
-                  <div class="overlap-7">
-                    <div class="dropdown-button">
-                      <div class="arrow-wrapper"><div class="arrow">^</div></div>
-                    </div>
-                    <div class="format-option">Binary (base-2)</div>
-                  </div>
-                  <div class="text-wrapper-21">Input Format</div>
-                </div>
-                <div class="convert-button"><div class="text-wrapper-23">CONVERT NOW</div></div>
-                <div class="reset-button"><div class="text-wrapper-24">RESET VALUES</div></div>
-              </div>
-            </div>
-            <img class="img" src="https://c.animaapp.com/2zqGcCpL/img/input-section-title@2x.png" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+    </body>
 </html>

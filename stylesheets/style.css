@@ -16,19 +16,19 @@
 */
 
 body {
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .desktop-interface {
     width: 1800px;
-    height: 1117px;
+    height: 920px;
     background-color: #344955;
   }
   
   .desktop-interface .simulation-interface {
     position: relative;
     width: 1544px;
-    height: 1000px;
+    height: 920px;
     top: 0px;
     left: 130px;
     background-color: #344955;
@@ -902,5 +902,17 @@ body {
 
 .pointer {
     cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
   

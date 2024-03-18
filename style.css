@@ -1,0 +1,807 @@
+.desktop-interface {
+    width: 1728px;
+    height: 1117px;
+    background-color: #344955;
+  }
+  
+  .desktop-interface .simulation-interface {
+    position: relative;
+    width: 1544px;
+    height: 1000px;
+    top: 58px;
+    left: 92px;
+    background-color: #344955;
+  }
+  
+  .desktop-interface .credits {
+    position: absolute;
+    width: 467px;
+    height: 73px;
+    top: 801px;
+    left: 0;
+  }
+  
+  .desktop-interface .text-wrapper {
+    position: absolute;
+    width: 183px;
+    top: 57px;
+    left: 225px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff80;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .div {
+    position: absolute;
+    width: 183px;
+    top: 57px;
+    left: 24px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff80;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .p {
+    position: absolute;
+    width: 168px;
+    top: 34px;
+    left: 287px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff80;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-2 {
+    position: absolute;
+    width: 132px;
+    top: 34px;
+    left: 135px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff80;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-3 {
+    position: absolute;
+    width: 114px;
+    top: 34px;
+    left: 2px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff80;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-4 {
+    position: absolute;
+    width: 131px;
+    top: 0;
+    left: 0;
+    font-family: "Iowan Old Style-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff80;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .information {
+    position: absolute;
+    width: 720px;
+    height: 376px;
+    top: 75px;
+    left: 2px;
+  }
+  
+  .desktop-interface .github-link {
+    position: absolute;
+    width: 718px;
+    height: 59px;
+    top: 317px;
+    left: 0;
+  }
+  
+  .desktop-interface .overlap-group {
+    position: relative;
+    width: 716px;
+    height: 59px;
+    background-color: #35374b;
+    border-radius: 25px 30px 30px 0px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .text-wrapper-5 {
+    position: absolute;
+    width: 641px;
+    top: 19px;
+    left: 38px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .this-simple-online {
+    position: absolute;
+    width: 716px;
+    top: 175px;
+    left: 0;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-6 {
+    position: absolute;
+    width: 657px;
+    top: 0;
+    left: 7px;
+    text-shadow: 0px 4px 4px #00000040;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 45px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .instructions {
+    position: absolute;
+    width: 713px;
+    height: 259px;
+    top: 495px;
+    left: 0;
+  }
+  
+  .desktop-interface .overlap {
+    position: relative;
+    width: 709px;
+    height: 259px;
+    background-color: #78a083;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .choose-your-desired {
+    position: absolute;
+    width: 494px;
+    top: 82px;
+    left: 92px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 500;
+    color: #35374b;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-7 {
+    position: absolute;
+    width: 194px;
+    top: 29px;
+    left: 41px;
+    -webkit-text-stroke: 1px #35374b;
+    font-family: "Kelly Slab", Helvetica;
+    font-weight: 400;
+    color: #35374b;
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .output-section {
+    position: absolute;
+    width: 775px;
+    height: 382px;
+    top: 510px;
+    left: 769px;
+  }
+  
+  .desktop-interface .overlap-2 {
+    position: relative;
+    height: 382px;
+  }
+  
+  .desktop-interface .output-frame {
+    position: absolute;
+    width: 775px;
+    height: 350px;
+    top: 32px;
+    left: 0;
+    background-color: #50727b;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .overlap-3 {
+    position: relative;
+    width: 647px;
+    height: 236px;
+    top: 60px;
+    left: 65px;
+  }
+  
+  .desktop-interface .output-display {
+    position: absolute;
+    width: 547px;
+    height: 236px;
+    top: 0;
+    left: 0;
+  }
+  
+  .desktop-interface .overlap-4 {
+    position: relative;
+    width: 555px;
+    height: 236px;
+  }
+  
+  .desktop-interface .binary-output {
+    position: absolute;
+    width: 555px;
+    height: 111px;
+    top: 0;
+    left: 0;
+  }
+  
+  .desktop-interface .text-wrapper-8 {
+    position: absolute;
+    top: 91px;
+    left: 357px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .overlap-group-2 {
+    position: absolute;
+    width: 445px;
+    height: 44px;
+    top: 36px;
+    left: 102px;
+  }
+  
+  .desktop-interface .fractional-box {
+    position: absolute;
+    width: 276px;
+    height: 44px;
+    top: 0;
+    left: 169px;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .exponent-box {
+    position: absolute;
+    width: 153px;
+    height: 44px;
+    top: 0;
+    left: 0;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .sample-binary {
+    position: absolute;
+    width: 332px;
+    height: 24px;
+    top: 10px;
+    left: 44px;
+  }
+  
+  .desktop-interface .text-wrapper-9 {
+    position: absolute;
+    top: 0;
+    left: 198px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-10 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-11 {
+    position: absolute;
+    top: 91px;
+    left: 130px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-12 {
+    position: absolute;
+    top: 91px;
+    left: 15px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .sign-box {
+    position: absolute;
+    width: 86px;
+    height: 44px;
+    top: 36px;
+    left: 0;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .text-wrapper-13 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Iowan Old Style-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .hexadecimal-output {
+    position: absolute;
+    width: 273px;
+    height: 190px;
+    top: 46px;
+    left: 0;
+    transform: rotate(180deg);
+  }
+  
+  .desktop-interface .overlap-5 {
+    position: relative;
+    width: 271px;
+    height: 190px;
+  }
+  
+  .desktop-interface .HEX {
+    left: 0;
+    position: absolute;
+    width: 55px;
+    height: 51px;
+    top: 0;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .HEX-2 {
+    left: 72px;
+    position: absolute;
+    width: 55px;
+    height: 51px;
+    top: 0;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .HEX-3 {
+    left: 144px;
+    position: absolute;
+    width: 55px;
+    height: 51px;
+    top: 0;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .HEX-4 {
+    left: 216px;
+    position: absolute;
+    width: 55px;
+    height: 51px;
+    top: 0;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .sample-HEX-data {
+    position: absolute;
+    width: 241px;
+    height: 181px;
+    top: 9px;
+    left: 20px;
+    transform: rotate(-180deg);
+  }
+  
+  .desktop-interface .text-wrapper-14 {
+    position: absolute;
+    top: 148px;
+    left: 0;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-15 {
+    position: absolute;
+    top: 148px;
+    left: 72px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-16 {
+    position: absolute;
+    top: 148px;
+    left: 144px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-17 {
+    position: absolute;
+    top: 148px;
+    left: 216px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-18 {
+    position: absolute;
+    top: 0;
+    left: 17px;
+    font-family: "JetBrains Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-19 {
+    position: absolute;
+    top: 60px;
+    left: 95px;
+    transform: rotate(-180deg);
+    font-family: "Iowan Old Style-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .save-button {
+    position: absolute;
+    width: 173px;
+    height: 90px;
+    top: 146px;
+    left: 474px;
+    background-color: #344955;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .text-wrapper-20 {
+    position: absolute;
+    width: 101px;
+    top: 36px;
+    left: 36px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .img {
+    position: absolute;
+    width: 441px;
+    height: 72px;
+    top: 0;
+    left: 334px;
+  }
+  
+  .desktop-interface .input-section {
+    position: absolute;
+    width: 775px;
+    height: 344px;
+    top: 107px;
+    left: 769px;
+  }
+  
+  .desktop-interface .overlap-6 {
+    position: relative;
+    height: 344px;
+  }
+  
+  .desktop-interface .input-frame {
+    position: absolute;
+    width: 775px;
+    height: 312px;
+    top: 32px;
+    left: 0;
+    background-color: #50727b;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .input-display {
+    position: relative;
+    width: 659px;
+    height: 203px;
+    top: 58px;
+    left: 61px;
+  }
+  
+  .desktop-interface .actual-input {
+    position: absolute;
+    width: 411px;
+    height: 88px;
+    top: 115px;
+    left: 0;
+  }
+  
+  .desktop-interface .exponent-prompt-wrapper {
+    position: absolute;
+    width: 83px;
+    height: 33px;
+    top: 28px;
+    left: 320px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .exponent-prompt {
+    position: absolute;
+    top: 9px;
+    left: 11px;
+    font-family: "Iowan Old Style-Italic", Helvetica;
+    font-weight: 400;
+    font-style: italic;
+    color: #7e7e7e;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .base-number {
+    position: absolute;
+    top: 40px;
+    left: 277px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 35px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .input-prompt-wrapper {
+    position: absolute;
+    width: 272px;
+    height: 51px;
+    top: 31px;
+    left: 0;
+    background-color: #ededed;
+    border-radius: 25px;
+    box-shadow: inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .input-prompt {
+    position: absolute;
+    top: 15px;
+    left: 27px;
+    font-family: "Iowan Old Style-Italic", Helvetica;
+    font-weight: 400;
+    font-style: italic;
+    color: #7e7e7e;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .text-wrapper-21 {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    font-family: "Iowan Old Style-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .input-format {
+    position: absolute;
+    width: 454px;
+    height: 85px;
+    top: 0;
+    left: 0;
+  }
+  
+  .desktop-interface .special-case-box {
+    width: 151px;
+    height: 31px;
+    top: 53px;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+    box-shadow: inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040;
+    position: absolute;
+    left: 297px;
+  }
+  
+  .desktop-interface .text-wrapper-22 {
+    width: 141px;
+    top: 32px;
+    font-family: "Iowan Old Style-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    left: 297px;
+  }
+  
+  .desktop-interface .overlap-7 {
+    position: absolute;
+    width: 272px;
+    height: 51px;
+    top: 34px;
+    left: 0;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+    box-shadow: inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .dropdown-button {
+    position: absolute;
+    width: 32px;
+    height: 25px;
+    top: 13px;
+    left: 222px;
+  }
+  
+  .desktop-interface .arrow-wrapper {
+    position: relative;
+    height: 25px;
+    background-color: #344955;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .arrow {
+    position: absolute;
+    width: 17px;
+    top: 3px;
+    left: 7px;
+    transform: rotate(180deg);
+    font-family: "Actor", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .desktop-interface .format-option {
+    position: absolute;
+    top: 16px;
+    left: 27px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .convert-button {
+    position: absolute;
+    width: 173px;
+    height: 90px;
+    top: 101px;
+    left: 486px;
+    background-color: #344955;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .text-wrapper-23 {
+    position: absolute;
+    width: 120px;
+    top: 34px;
+    left: 27px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-interface .reset-button {
+    position: absolute;
+    width: 173px;
+    height: 37px;
+    top: 38px;
+    left: 486px;
+    background-color: #344955;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+  }
+  
+  .desktop-interface .text-wrapper-24 {
+    position: absolute;
+    top: 8px;
+    left: 32px;
+    font-family: "Iowan Old Style-Roman", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  

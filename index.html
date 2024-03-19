@@ -21,6 +21,8 @@
 
     <head>
         <meta charset="utf-8" />
+        <script src="javascript/script.js"></script>
+
         <link rel="stylesheet" href="stylesheets/globals.css" />
         <link rel="stylesheet" href="stylesheets/style.css" />
     </head>
@@ -77,43 +79,39 @@
                         <div class="input-frame">
                             <div class="input-display">
 
-                                <!-- USE THIS PART PARA SA BINARY/DECIMAL & EXPONENT INPUT -->
+                                <!-- Binary/Decimal & Exponent Input -->
                                 <div class="actual-input">
-                                    <input class="input-prompt-wrapper" type="number" inputmode="numeric" placeholder="Enter Binary Mantissa..." required></input>
+                                    <input id="inputBox" class="input-prompt-wrapper" type="number" inputmode="numeric" placeholder="Enter Binary Mantissa..." required></input>
 
-                                    <div class="text-wrapper-21">Binary Mantissa</div>
-                                    <div class="base-number">&#215;2</div>
+                                    <div id="inputPrompt" class="text-wrapper-21">Binary Mantissa</div>
+                                    <div id="baseNumber" class="base-number">&#215; 2</div>
 
-                                    <input class="exponent-prompt-wrapper" type="number" inputmode="numeric" placeholder="Exponent..." required></input>
+                                    <input id="expBox" class="exponent-prompt-wrapper" type="number" inputmode="numeric" placeholder="Exponent..." required></input>
                                 </div>
-                                <!-- INPUT NG NUMBERS UNTIL DITO -->
 
                                 <div class="input-format">
                                     <div class="text-wrapper-21">Input Format</div>
 
-                                    <!-- USE THIS SELECTOR PANG INPUT FORMAT -->
-                                    <select class="format-dropdown pointer">
+                                    <!-- Input Format Selector -->
+                                    <select id="formatSelect" onchange="getInputFormat()" class="format-dropdown pointer">
                                         <option value="binary">Binary (base-2)</option>
-                                        <option value="binary">Decimal (base-10)</option>
+                                        <option value="decimal">Decimal (base-10)</option>
                                     </select>
-                                    <!-- END OF SELECTOR -->
 
-                                    <!-- USE THIS TO OUTPUT TYPE OF SPECIAL CASE DETECTED -->
+                                    <!-- TODO: Use for printing the type of special case -->
                                     <div class="text-wrapper-22">Special Case Detector</div>
                                     <div class="special-case-box not-allowed"></div>
-                                    <!-- END OF SPECIAL CASE -->
+                                    <!-- END OF TODO: SPECIAL CASE -->
                                 </div>
 
-                                <!-- USE THESE BUTTONS FOR CONVERT & RESET -->
-                                <button class="convert-button pointer">
+                                <!-- Buttons for Convert & Reset -->
+                                <button id="convertBtn" class="convert-button pointer">
                                     <div class="text-wrapper-23">CONVERT NOW</div>
                                 </button>
 
-                                <button class="reset-button pointer">
+                                <button onclick="resetValues()" class="reset-button pointer">
                                     <div class="text-wrapper-24">RESET VALUES</div>
                                 </button>
-                                <!-- UNTIL DITO ANG BUTTONS -->
-
 
                             </div>
                         </div>
@@ -140,7 +138,7 @@
                                                 <div class="fractional-box not-allowed"></div>
                                                 <div class="exponent-box not-allowed"></div>
 
-                                                <!-- USE THIS PART PARA SA BINARY-16 OUTPUT -->
+                                                <!-- TODO: USE THIS PART PARA SA BINARY-16 OUTPUT -->
                                                 <div class="BINARY-VALUES">
                                                     <div class="sign-bit">X</div> <!-- One Digit -->
                                                     <div class="exponent-bit">XXX XX</div> <!-- 5 Digits (Follow 3-2 spacing) -->
@@ -160,7 +158,7 @@
                                                 <div class="HEX-BOX-3 not-allowed"></div>
                                                 <div class="HEX-BOX-4 not-allowed"></div>
 
-                                                <!-- USE THIS PART PARA SA HEXADECIMAL OUTPUT -->
+                                                <!-- TODO: USE THIS PART PARA SA HEXADECIMAL OUTPUT -->
                                                 <div class="HEX-VALUES">
                                                     <div class="HEX-1">X</div>
                                                     <div class="HEX-2">X</div>
@@ -174,7 +172,7 @@
                                     </div>
                                 </div>
 
-                                <!-- USE THIS BUTTON TO SAVE IN TEXT FILE -->
+                                <!-- TODO: USE THIS BUTTON TO SAVE IN TEXT FILE -->
                                 <button class="save-button pointer">
                                     <div class="text-wrapper-20">SAVE RESULT</div>
                                 </button>

@@ -1,29 +1,30 @@
+var globalResult = {};
+var resultInHex = "";
 
 function getInputFormat() {
     var inputFormat = document.getElementById("formatSelect").value;
 
-    if(inputFormat == "decimal")
+    if(inputFormat === "decimal")
     {
         document.getElementById("baseNumber").innerHTML = "&#215;10";
         document.getElementById("inputPrompt").innerHTML = "Decimal Number";
         document.getElementById("inputBox").placeholder = "Enter Decimal Number...";
         document.getElementById("inputBox").value = "";
 
-        document.getElementById("convertBtn").onclick = function() {handleConvert()};
+        // document.getElementById("convertBtn").onclick = function() {handleConvert()};
     }
-    else if(inputFormat == "binary")
+    else if(inputFormat === "binary")
     {
         document.getElementById("baseNumber").innerHTML = "&#215; 2";
         document.getElementById("inputPrompt").innerHTML = "Binary Mantissa";
         document.getElementById("inputBox").placeholder = "Enter Binary Mantissa...";
         document.getElementById("inputBox").value = "";
 
-        document.getElementById("convertBtn").onclick = function() {handleConvert()};
+        // document.getElementById("convertBtn").onclick = function() {handleConvert()};
     }
 }
 
-function getExponent() {
-    var exp = document.getElementById("expBox").value;
+function getExponent(exp) {
 
     const expPrime = getExpPrime(parseInt(exp));
     const binary = decToBinary(expPrime);
@@ -65,7 +66,7 @@ function getExpPrime(exp) {
 }
 
 function isNegative(mantissa){
-    if(mantissa.charAt(0) === "-"){
+    if(mantissa.toString().charAt(0) === "-"){
         return "1"
     } else{
         return "0"
@@ -120,18 +121,11 @@ function fixMantissa(mantissa){
     var ctr = 0;
     var base = 10;
     var result = 0;
+    var exp = 0;
 
     if(isMantissaNegative === "1"){
         offset++;
     } 
-
-    // console.log('OFFSET: ', offset);
-
-    // for(var i = offset; i < mantissa.length - offset; i++){
-    //     if(mantissa.charAt(i) === "0"){
-
-    //     }
-    // }
 
     //the if condition tests whether we move the radix point to the left or write
     if(mantissa.charAt(offset) === "0"){
@@ -141,22 +135,36 @@ function fixMantissa(mantissa){
                 break;
             }
             ctr++;
+            exp--;
         }
 
         result = parseFloat(mantissa) * (base ** ctr);
     } else {
         //consider the case 1 (e.g. 1111.101). FIND THE DECIMAL POINT.
+        for(var i = offset+1; i <= mantissa.length - (offset+1); i++){
+            console.log('CHARAT: ', mantissa.charAt(i));
+            if(mantissa.charAt(i) === "."){
+                break;
+            }
+
+            ctr--;
+            exp++;
+        }
+
+        result = parseFloat(mantissa) * (base ** ctr);
     }
 
-    console.log("Result: ", result);
+    const output = {
+        result: result,
+        exp: exp
+    };
 
-
+    return output;
 }
 
 function generateOutput(mantissa, exp){
-    const mode = document.getElementById("formatSelect").value;
 
-    var flag = false;
+    var flag = "";
     var exponent_bits = "";
     var fraction_bits = "";
 
@@ -168,26 +176,21 @@ function generateOutput(mantissa, exp){
         f_bits: fraction_bits
     }
 
-    var regex = getRegex(mode);
+    flag = isNegative(mantissa.toString());
+    console.log('FLAG: ', flag);
+    console.log('EXP2: ', exp);
+    exponent_bits = padZeroes(5, getExponent(exp));
+    console.log('MANTISSA: ', mantissa);
+    fraction_bits = padZeroes(10, mantissa.toString().substring(2));
 
-    const validateFlag = validateMantissa(mantissa, regex);
+    if(flag === "1"){
+        fraction_bits = padZeroes(10, mantissa.toString().substring(3));
+    }
 
-    if(!validateFlag){
-        alert('wrong!');
-    } else {
-        flag = isNegative(mantissa);
-        exponent_bits = padZeroes(5, getExponent());
-        fraction_bits = padZeroes(10, mantissa.substring(2));
-
-        if(flag){
-            fraction_bits = padZeroes(10, mantissa.substring(3));
-        }
-
-        output = {
-            s_bit: flag,
-            e_bits: exponent_bits,
-            f_bits: fraction_bits
-        }
+    output = {
+        s_bit: flag,
+        e_bits: exponent_bits,
+        f_bits: fraction_bits
     }
 
     console.log('Sign Bit: ', output.s_bit);
@@ -253,7 +256,7 @@ function fractionalToBinary(input){
         
 }
 
-function moveDecimalPoint(input, exp){
+function moveRadixPoint(input, exp){
     const parseExp = parseInt(exp);
     const number = parseFloat(input);
 
@@ -262,7 +265,12 @@ function moveDecimalPoint(input, exp){
 
     console.log(parseNotation);
 
-    return parseNotation;
+    const output = {
+        mantissa: parseNotation,
+        exp : 0
+    };
+
+    return output;
 }
 
 function countBits(binary){
@@ -270,6 +278,8 @@ function countBits(binary){
 }
 
 function padZeroes(bits, binary){
+    console.log('BIT: ', bits);
+    console.log('BINARY: ', binary);
     const zeroes = parseInt(bits) - countBits(binary);
     var output = ""
 
@@ -278,6 +288,15 @@ function padZeroes(bits, binary){
     }
 
     if(bits === 10){
+        if(zeroes < 0){
+            output = ""
+            for(var i = 0; i < 10; i++){
+                output = output + binary.charAt(i);
+            }
+
+            return output;
+        }
+
         return binary + output;
     } else{
         return output + binary;
@@ -285,15 +304,66 @@ function padZeroes(bits, binary){
 }
 
 function handleConvert() {
+    var mantissa = document.getElementById("inputBox").value;
+    var exp = document.getElementById("expBox").value;
+    const mode = document.getElementById("formatSelect").value;
 
-    //remove after use
-    // var temp = binaryBuilder("-0.625");
-    fixMantissa("0.00001");
+    var result = {}
+    var finalOutput = "";
+    var binaryMantissa = "";
 
-    const mantissa = document.getElementById("inputBox").value;
-    const exp = document.getElementById("expBox").value;
+    var regex = getRegex(mode);
 
-    generateOutput(mantissa, exp);
+    const validateFlag = validateMantissa(mantissa, regex);
+
+    if(!validateFlag){
+        alert("WRONG!");
+    } else {
+        if(mode === "decimal"){
+            result = moveRadixPoint(mantissa, exp);
+            mantissa = result.mantissa;
+            exp = result.exp;
+
+            binaryMantissa = binaryBuilder(mantissa.toString());
+            binaryMantissa = fixMantissa(binaryMantissa);
+
+            mantissa = binaryMantissa.result;
+            exp = binaryMantissa.exp;
+
+            finalOutput = generateOutput(mantissa, exp);
+
+        } else {
+            result = moveRadixPoint(mantissa, exp)
+            mantissa = result.mantissa;
+            exp = result.exp;
+
+            binaryMantissa = fixMantissa(mantissa.toString());
+
+            mantissa = binaryMantissa.result;
+            exp = binaryMantissa.exp;
+
+            console.log('EXP: ', exp);
+
+            finalOutput = generateOutput(mantissa, exp);
+        }
+    }
+
+    globalResult = finalOutput;
+    resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
+
+    alert(printOutputs());
+}
+
+function binaryToHex(binary) {
+    let hex = '';
+
+    for (let i = 0; i < binary.length; i += 4) {
+        let binarybyte = binary.substr(i, 4);
+        let hexDigit = parseInt(binarybyte, 2).toString(16); 
+        hex += hexDigit; 
+    }
+
+    return hex.toUpperCase(); 
 }
 
 function convertBinary() {
@@ -307,5 +377,22 @@ function convertDecimal() {
 }
 
 function saveResult() {
+  
+    const link = document.createElement("a");
+    const file = new Blob([resultInHex], { type: 'text/plain' });
 
+    link.href = URL.createObjectURL(file);
+    link.download = "hex.txt";
+
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+function printOutputs(){
+    console.log('Sign Bit: ', globalResult.s_bit);
+    console.log('Exponent Bits: ', globalResult.e_bits);
+    console.log('Fractional Bits: ', globalResult.f_bits);
+    console.log('Hex: ', resultInHex);
+
+    return "Sign Bit: " + globalResult.s_bit + "\n" + "Exponent Bits: " + globalResult.e_bits + "\n" + "Fractional Bits: " + globalResult.f_bits + "\n" + "Hex: " + resultInHex + "\n"; 
 }

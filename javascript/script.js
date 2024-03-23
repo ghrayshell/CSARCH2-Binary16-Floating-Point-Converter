@@ -219,6 +219,49 @@ function fixMantissa(mantissa){
     return output;
 }
 
+function handleDenormalize(mantissa, exp){
+    const isMantissaNegative = isNegative(mantissa);
+    var posExp = parseInt(exp) * -1;
+    var offset = 0;
+    var numZero = posExp - 15;
+    var padZero = "";
+    var result = "";
+    var signBit = "";
+    var fractionBits = "";
+
+    for(var i = 0; i < numZero; i++){
+        padZero = "0" + padZero;
+    }
+
+    if(isMantissaNegative === "1"){
+        offset++;
+        signBit = "1";
+    } else{
+        signBit = "0";
+    }
+
+    var str1 = "1";
+    var str2 = mantissa.substring(mantissa.indexOf(".") + 1);
+
+    console.log('STR1: ', str1);
+    console.log('STR2: ', str2);
+    console.log('ZERO: ', padZero);
+
+    result = "0." + padZero + str1 + str2;
+
+    console.log('RESULT: ', result);
+
+    fractionBits = padZero + str1 + str2;
+
+    const output = {
+        s_bit: signBit,
+        e_bits: "00000",
+        f_bits: fractionBits.substring(0, 10)
+    }
+
+    return output;
+}
+
 function generateOutput(mantissa, exp, s_case){
 
     console.log('MANTISSA USE: ', mantissa);
@@ -273,9 +316,9 @@ function generateOutput(mantissa, exp, s_case){
         }
     }
 
-    // if(s_case === "denormalize"){
-
-    // }
+    if(s_case === "denormalize"){
+       output = handleDenormalize(mantissa, exp);
+    }
 
     return output;
 }

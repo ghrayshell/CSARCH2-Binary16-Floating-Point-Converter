@@ -116,15 +116,17 @@ function binaryBuilder(mantissa){
 
 //assume mantissa to be in binary x 2^0
 function fixMantissa(mantissa){
+    // console.log('FIX MANTISSA: ', mantissa); //correct
     const isMantissaNegative = isNegative(mantissa);
     var offset = 0;
     var ctr = 0;
     var base = 10;
-    var result = 0;
+    var result = "";
     var exp = 0;
 
     if(isMantissaNegative === "1"){
         offset++;
+        result = result + "-";
     } 
 
     //the if condition tests whether we move the radix point to the left or write
@@ -138,9 +140,28 @@ function fixMantissa(mantissa){
             exp--;
         }
 
-        result = parseFloat(mantissa) * (base ** ctr);
+        console.log('MANTISSA: ', mantissa);
+
+        console.log('CTR: ', ctr);
+        console.log('EXP: ', exp);
+
+        var sbstring = mantissa.substring(offset+ctr+2);
+
+        console.log('SUBSTRING!!!: ', sbstring);
+    
+        result = result + "1" + "." + sbstring;
+
+        
+
+        // result = parseFloat(mantissa).toFixed(32) * (base ** ctr);
+
+        console.log("New result: ", result);
+
+        
+
     } else {
         //consider the case 1 (e.g. 1111.101). FIND THE DECIMAL POINT.
+        
         for(var i = offset+1; i <= mantissa.length - (offset+1); i++){
             console.log('CHARAT: ', mantissa.charAt(i));
             if(mantissa.charAt(i) === "."){
@@ -151,7 +172,20 @@ function fixMantissa(mantissa){
             exp++;
         }
 
-        result = parseFloat(mantissa) * (base ** ctr);
+        console.log('MANTISSA: ', mantissa);
+
+        console.log('CTR: ', ctr);
+        console.log('EXP: ', exp);
+
+        var sbstring = mantissa.substring(offset+1, offset+exp+1);
+        var sbstring2 = mantissa.substring(offset+exp+2);
+
+        console.log('SUB1: ', sbstring);
+        console.log('SUB2: ', sbstring2);
+
+        result = result + "1" + "." + sbstring + sbstring2;
+
+        console.log('RESULT: ', result);
     }
 
     const output = {
@@ -325,7 +359,9 @@ function handleConvert() {
             exp = result.exp;
 
             binaryMantissa = binaryBuilder(mantissa.toString());
+            console.log('BUILD:' , binaryMantissa); // -- .0000000..00
             binaryMantissa = fixMantissa(binaryMantissa);
+            console.log('FIX: ', binaryMantissa); // -- .00..09..9
 
             mantissa = binaryMantissa.result;
             exp = binaryMantissa.exp;

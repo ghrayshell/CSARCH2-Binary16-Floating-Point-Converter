@@ -236,6 +236,7 @@ function generateOutput(mantissa, exp){
 
 function resetValues() {
     document.getElementById("formatSelect").selectedIndex = 0;
+    document.getElementById("specialCase").innerHTML = "";
     document.getElementById("inputBox").value = "";
     document.getElementById("expBox").value = "";
     getInputFormat();

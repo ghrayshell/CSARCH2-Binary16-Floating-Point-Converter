@@ -205,6 +205,10 @@ function fixMantissa(mantissa){
         output.s_cases = "infinity";
     }
 
+    if(exp <= -15){
+        output.s_cases = "denormalize";
+    }
+
     if(mantissa === 0){
         output.s_cases = "zero";
     }
@@ -459,6 +463,16 @@ function padZeroes(bits, binary){
     }
 }
 
+function validateExp(exp, regex){
+    var flag = false;
+
+    if(exp.match(regex)){
+        flag = true;
+    }
+
+    return flag;
+}
+
 function handleConvert() {
     var mantissa = document.getElementById("inputBox").value;
     var exp = document.getElementById("expBox").value;
@@ -472,8 +486,9 @@ function handleConvert() {
     var regex = getRegex(mode);
 
     const validateFlag = validateMantissa(mantissa, regex);
+    const isExpCorrect = validateExp(exp, /^[0-9]+$/);
 
-    if(!validateFlag){
+    if(!isExpCorrect || !validateFlag){
 
         globalResult = {
             s_bit: "X",

@@ -181,7 +181,7 @@ function fixMantissa(mantissa){
         detectedSpecialCase = "Denormalized";
     }
 
-    if(mantissa === 0){
+    if(mantissa == 0){
         output.s_cases = "zero";
         detectedSpecialCase = "Zero";
     }

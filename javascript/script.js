@@ -354,6 +354,11 @@ function resetValues() {
     document.getElementById("HEXBOX-3").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
     document.getElementById("HEXBOX-4").style.backgroundColor = "#666666";
     document.getElementById("HEXBOX-4").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+
+    document.getElementById("saveBtn").disabled = true;
+    document.getElementById("saveBtn").style.backgroundColor = "#1F2529";
+    document.getElementById("saveBtn").style.cursor = "not-allowed";
+    document.getElementById("saveBtn").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
 }
 
 function decToBinary(input){
@@ -566,6 +571,10 @@ function handleConvert() {
 
     } else {
         if(mode === "decimal"){
+            validInput = mantissa;
+            expInput = exp;
+            baseInput = 10;
+            
             result = moveRadixPoint(mantissa, exp);
             mantissa = result.mantissa;
             exp = result.exp;
@@ -583,17 +592,11 @@ function handleConvert() {
             s_case = binaryMantissa.s_cases;
 
             finalOutput = generateOutput(mantissa, exp, s_case);
-
-            globalResult = finalOutput;
-            resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
-
-            printOutputs();
-
+        } else {
             validInput = mantissa;
             expInput = exp;
             baseInput = 2;
-
-        } else {
+            
             result = moveRadixPoint(mantissa, exp)
             mantissa = result.mantissa;
             exp = result.exp;
@@ -607,11 +610,17 @@ function handleConvert() {
             console.log('EXP: ', exp);
 
             finalOutput = generateOutput(mantissa, exp, s_case);
-
-            validInput = mantissa;
-            expInput = exp;
-            baseInput = 2;
         }
+
+        document.getElementById("saveBtn").disabled = false;
+        document.getElementById("saveBtn").style.backgroundColor = "#344955";
+        document.getElementById("saveBtn").style.cursor = "pointer";
+        document.getElementById("saveBtn").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040";
+
+        globalResult = finalOutput;
+        resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
+
+        printOutputs();
     }
 }
 

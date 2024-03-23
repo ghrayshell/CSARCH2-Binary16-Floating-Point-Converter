@@ -66,7 +66,8 @@ function getExpPrime(exp) {
 }
 
 function isNegative(mantissa){
-    if(mantissa.toString().charAt(0) === "-"){
+    console.log('TYPE: ', typeof(mantissa));
+    if(mantissa.charAt(0) === "-"){
         return "1"
     } else{
         return "0"
@@ -85,8 +86,10 @@ function getRegex(mode){
 
 //assume mantissa to be in decimal x 10^0
 function binaryBuilder(mantissa){
-    const isMantissaNegative = isNegative(mantissa);
+    console.log('TYPE: ', typeof(mantissa));
+    const isMantissaNegative = isNegative(mantissa);;
     const parseMantissa = parseFloat(mantissa);
+    console.log('PARSE MANTISSA: ', parseMantissa);
     var output = "";
 
     var wholeNum = 0;
@@ -94,6 +97,7 @@ function binaryBuilder(mantissa){
 
     if(isMantissaNegative === "1"){
         output = output + "-";
+        console.log('TEST WHOLE NUM: ', wholeNum);
         wholeNum = parseInt(mantissa.substring(1));
         console.log('PARSE: ', parseFloat(mantissa.substring(1)));
         console.log('WHOLE: ', parseFloat(wholeNum));
@@ -101,15 +105,18 @@ function binaryBuilder(mantissa){
         console.log('FRACTION: ', fractionalPart.toFixed(32)); //NOTE: might be lack on precision on some test cases
     } else{
         wholeNum = parseInt(mantissa);
+        console.log('TEST WHOLE NUM: ', parseMantissa);
         fractionalPart = parseMantissa - wholeNum;
     }
 
     console.log(wholeNum);
 
+    console.log("FRACTIONAL: ", fractionalPart)
+
     output = output + decToBinary(wholeNum) + "." + fractionalToBinary(fractionalPart.toFixed(32).toString());
 
 
-    console.log('OUTPUT: ', output);
+    console.log('OUTPUT BINARY: ', output);
 
     return output;
 }
@@ -117,6 +124,7 @@ function binaryBuilder(mantissa){
 //assume mantissa to be in binary x 2^0
 function fixMantissa(mantissa){
     // console.log('FIX MANTISSA: ', mantissa); //correct
+    console.log('TYPE: ', typeof(mantissa));
     const isMantissaNegative = isNegative(mantissa);
     var offset = 0;
     var ctr = 0;
@@ -132,7 +140,6 @@ function fixMantissa(mantissa){
     //the if condition tests whether we move the radix point to the left or write
     if(mantissa.charAt(offset) === "0"){
         for(var i = offset+1; i <= mantissa.length - (offset+1); i++){
-            console.log('CHARAT: ', mantissa.charAt(i+1));
             if(mantissa.charAt(i) === "1"){
                 break;
             }
@@ -198,6 +205,8 @@ function fixMantissa(mantissa){
 
 function generateOutput(mantissa, exp){
 
+    console.log('MANTISSA USE: ', mantissa);
+
     var flag = "";
     var exponent_bits = "";
     var fraction_bits = "";
@@ -210,7 +219,8 @@ function generateOutput(mantissa, exp){
         f_bits: fraction_bits
     }
 
-    flag = isNegative(mantissa.toString());
+    console.log('TYPE: ', typeof(mantissa));
+    flag = isNegative(mantissa);
     console.log('FLAG: ', flag);
     console.log('EXP2: ', exp);
     exponent_bits = padZeroes(5, getExponent(exp));
@@ -299,21 +309,166 @@ function fractionalToBinary(input){
         
 }
 
+// function moveRadixPoint(input, exp){
+//     const isMantissaNegative = isNegative(input);
+//     const parseExp = parseInt(exp);
+//     const number = parseFloat(input);
+//     var offset = 0;
+//     var result = "";
+//     var ctr = parseInt(exp);
+//     var str1 = "";
+//     var str2 = "";
+
+//     // const notationBuilder = number + "e" + parseExp;
+//     // const parseNotation = parseFloat(notationBuilder);
+
+//     // console.log(parseNotation);
+
+//     // const output = {
+//     //     mantissa: parseNotation,
+//     //     exp : 0
+//     // };
+
+//     // INPUT: 5.5025 x 10 ^ 
+//     // 5.025
+//     // RESULT: 0.005025 x 10 ^ 0
+
+//     if(isMantissaNegative === "1"){
+//         offset++;
+//     }
+
+//     if(parseExp < 0){
+//         //move radix point to the left until exp is 0
+//         var str1 = input.substring(input.indexOf(".") - 1, input.indexOf(".") + 1);
+//         var str2 = input.substring(input.indexOf(".") + 1);
+//         var temp = str1;
+//         result = str1 + str2;
+
+//         console.log('STR1: ', str1);
+//         console.log('STR2: ', str2);
+        
+//         console.log('COMBINED: ', result);
+
+//         while(ctr != 0){
+//             if(result.charAt(0) !== "."){
+//                 str1 = swapTwoChar(str1);
+//                 temp = str1;
+//                 str2 = temp.charAt(1) + str2;
+
+//             } else {
+//                 str1 = swapTwoChar("0.");
+//                 temp = str1;
+//                 str2 = temp.charAt(1) + str2;
+//             }
+
+//             ctr++;
+//         }
+
+//         result = str1 + str2;
+
+//         if(result.charAt(0) === "."){
+//             result = "0" + result;
+//         }
+
+//         console.log('RESULT: ', result);
+        
+
+//     } else {
+//         //move radix point to the right until exp is 0
+//     }
+
+//     return output;
+// }
+
 function moveRadixPoint(input, exp){
+    console.log('TYPE: ', typeof(input));
+    const isMantissaNegative = isNegative(input);
     const parseExp = parseInt(exp);
-    const number = parseFloat(input);
+    var ctr = parseExp;
+    var temp = 0;
+    var offset = 0;
+    var num = 0;
+    var padZero = "";
+    var splitStr = "";
+    var result = "";
 
-    const notationBuilder = number + "e" + parseExp;
-    const parseNotation = parseFloat(notationBuilder);
+    if(isMantissaNegative === "1"){
+        offset++;
+    }
 
-    console.log(parseNotation);
+    if(parseExp < 0){
+
+        var str1 = input.substring(offset, input.indexOf("."));
+        var str2 = input.substring(input.indexOf(".") + 1);
+
+        num = str1.length + parseExp;
+        temp = num;
+
+        console.log('STR1: ', str1);
+        console.log('STR2: ', str2);
+
+        if(num <= 0){
+            while(temp !== 0){
+                padZero = padZero + "0";
+                temp++;
+            }
+
+            result = "0." + padZero + str1 + str2;
+
+            console.log('RESULT PLS SANA TAMA: ', result);
+        } else {
+            splitStr = str1.substring(0, num);
+            str1 = str1.substring(num);
+
+            result = splitStr + "." + str1 + str2;
+
+            console.log('SANA TAMA: ', result);
+        }
+    }
+
+    if(parseExp > 0){
+        var str1 = input.substring(offset, input.indexOf("."));
+        var str2 = input.substring(input.indexOf(".") + 1);
+        num = parseExp - str2.length;
+        temp = num;
+        padZero = "";
+        result = "";
+
+        if(num > 0){
+            while(temp !== 0){
+                padZero = padZero + "0";
+                temp--;
+            }
+
+            result = str1 + str2 + padZero;
+        } else {
+            splitStr = str2.substring(0, exp);
+            str2 = str2.substring(exp);
+
+            result = str1 + splitStr + "." + str2;
+        }
+
+        console.log('RESULT SANA TAMA PLS AYOKO NA: ', result);
+    }
+
+    if(isMantissaNegative === "1"){
+        result = "-" + result;
+    }
+
+    if(parseExp === 0) {
+        result = input;
+    }
 
     const output = {
-        mantissa: parseNotation,
-        exp : 0
+        mantissa: result,
+        exp: 0
     };
 
     return output;
+}
+
+function swapTwoChar(str){
+    return str.charAt(1) + str.charAt(0);
 }
 
 function countBits(binary){
@@ -367,7 +522,10 @@ function handleConvert() {
             mantissa = result.mantissa;
             exp = result.exp;
 
-            binaryMantissa = binaryBuilder(mantissa.toString());
+            console.log('TYPE: ', typeof(mantissa));
+
+            console.log('ISEMPTY: ', result.mantissa);
+            binaryMantissa = binaryBuilder(mantissa);
             console.log('BUILD:' , binaryMantissa); // -- .0000000..00
             binaryMantissa = fixMantissa(binaryMantissa);
             console.log('FIX: ', binaryMantissa); // -- .00..09..9

@@ -280,6 +280,10 @@ function resetValues() {
     document.getElementById("expBox").value = "";
     getInputFormat();
 
+    document.getElementById("specialCase").innerHTML = "";
+    document.getElementById("specialBox").style.backgroundColor = "#666666";
+    document.getElementById("specialBox").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+
     document.getElementById("signBit").innerHTML = "X";
     document.getElementById("expBit").innerHTML = "XXX XX";
     document.getElementById("fracPart").innerHTML = "XX XXXX XXXX";
@@ -590,6 +594,8 @@ function saveResult() {
 
 function printOutputs(){
     document.getElementById("specialCase").innerHTML = detectedSpecialCase;
+    document.getElementById("specialBox").style.backgroundColor = "#d9d9d9";
+    document.getElementById("specialBox").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
 
     document.getElementById("signBit").innerHTML = globalResult.s_bit;
     document.getElementById("expBit").innerHTML = globalResult.e_bits.substring(0, 3) + " " + globalResult.e_bits.substring(3, 5);

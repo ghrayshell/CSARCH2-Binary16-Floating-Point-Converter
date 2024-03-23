@@ -554,7 +554,7 @@ function handleConvert() {
     var regex = getRegex(mode);
 
     const validateFlag = validateMantissa(mantissa, regex);
-    const isExpCorrect = validateExp(exp, /^[0-9]+$/);
+    const isExpCorrect = validateExp(exp, /-?\d+/);
 
     if(!isExpCorrect || !validateFlag){
 

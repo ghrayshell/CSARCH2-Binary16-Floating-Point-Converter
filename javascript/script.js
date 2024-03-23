@@ -569,14 +569,6 @@ function handleConvert() {
             expInput = exp;
             baseInput = 2;
         }
-
-            globalResult = finalOutput;
-            resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
-
-            printOutputs();
-
-            
-        }
     }
 }
 

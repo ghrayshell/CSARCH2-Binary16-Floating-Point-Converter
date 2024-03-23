@@ -1,3 +1,6 @@
+var validInput = "";
+var expInput = "";
+var baseInput = "";
 var globalResult = {};
 var resultInHex = "";
 
@@ -552,6 +555,10 @@ function handleConvert() {
 
             finalOutput = generateOutput(mantissa, exp);
 
+            validInput = mantissa;
+            expInput = exp;
+            baseInput = 2;
+
         } else {
             result = moveRadixPoint(mantissa, exp)
             mantissa = result.mantissa;
@@ -565,6 +572,10 @@ function handleConvert() {
             console.log('EXP: ', exp);
 
             finalOutput = generateOutput(mantissa, exp);
+
+            validInput = mantissa;
+            expInput = exp;
+            baseInput = 2;
         }
 
         globalResult = finalOutput;
@@ -598,13 +609,13 @@ function convertDecimal() {
 function saveResult() {
   
     const link = document.createElement("a");
-    const file = new Blob([resultInHex], { type: 'text/plain' });
+    const file = new Blob(["\n\n [ FLOATING-POINT CONVERTER RESULTS ] \n\n\n", " INPUT = ", validInput, "x", baseInput, "^", expInput, "\n\n ---------- \n\n BINARY-16 = ", globalResult.s_bit, " ", globalResult.e_bits, " ", globalResult.f_bits, "\n HEXADECIMAL = ", resultInHex], { type: 'text/plain' });
 
     link.href = URL.createObjectURL(file);
-    link.download = "hex.txt";
+    link.download = "binary16_hex_result.txt";
 
     link.click();
-    URL.revokeObjectURL(link.href);
+    URL.revokeObjectURL(link.href); 
 }
 
 function printOutputs(){

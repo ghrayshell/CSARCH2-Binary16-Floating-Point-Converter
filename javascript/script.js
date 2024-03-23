@@ -391,12 +391,11 @@ function handleConvert() {
 
             finalOutput = generateOutput(mantissa, exp);
         }
+
+        globalResult = finalOutput;
+        resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
+        printOutputs();
     }
-
-    globalResult = finalOutput;
-    resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
-
-    alert(printOutputs());
 }
 
 function binaryToHex(binary) {

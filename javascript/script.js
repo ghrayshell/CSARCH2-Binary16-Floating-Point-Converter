@@ -56,7 +56,7 @@ function validateMantissa(mantissa, regex){
     var DecimalRegex = /^[-]?[0-9]+[.]?[0-9]*$/; //validates decimal base
     var BinaryRegex = /^[-]?[0-1]+[.]?[0-1]*$/
 
-    console.log('Mantissa: ', mantissa);
+    
 
     if(mantissa.match(regex)){
         return true;
@@ -70,7 +70,7 @@ function getExpPrime(exp) {
 }
 
 function isNegative(mantissa){
-    console.log('TYPE: ', typeof(mantissa));
+    
     if(mantissa.charAt(0) === "-"){
         return "1"
     } else{
@@ -90,10 +90,10 @@ function getRegex(mode){
 
 //assume mantissa to be in decimal x 10^0
 function binaryBuilder(mantissa){
-    console.log('TYPE: ', typeof(mantissa));
+    
     const isMantissaNegative = isNegative(mantissa);;
     const parseMantissa = parseFloat(mantissa);
-    console.log('PARSE MANTISSA: ', parseMantissa);
+    
     var output = "";
 
     var wholeNum = 0;
@@ -101,34 +101,31 @@ function binaryBuilder(mantissa){
 
     if(isMantissaNegative === "1"){
         output = output + "-";
-        console.log('TEST WHOLE NUM: ', wholeNum);
+        
         wholeNum = parseInt(mantissa.substring(1));
-        console.log('PARSE: ', parseFloat(mantissa.substring(1)));
-        console.log('WHOLE: ', parseFloat(wholeNum));
+        
         fractionalPart = parseFloat(mantissa.substring(1)) - parseFloat(wholeNum);
-        console.log('FRACTION: ', fractionalPart.toFixed(32)); //NOTE: might be lack on precision on some test cases
+        
     } else{
         wholeNum = parseInt(mantissa);
-        console.log('TEST WHOLE NUM: ', parseMantissa);
+       
         fractionalPart = parseMantissa - wholeNum;
     }
 
-    console.log(wholeNum);
-
-    console.log("FRACTIONAL: ", fractionalPart)
+    
 
     output = output + decToBinary(wholeNum) + "." + fractionalToBinary(fractionalPart.toFixed(32).toString());
 
 
-    console.log('OUTPUT BINARY: ', output);
+    
 
     return output;
 }
 
 //assume mantissa to be in binary x 2^0
 function fixMantissa(mantissa){
-    // console.log('FIX MANTISSA: ', mantissa); //correct
-    console.log('TYPE: ', typeof(mantissa));
+    
+    
     const isMantissaNegative = isNegative(mantissa);
     var offset = 0;
     var ctr = 0;
@@ -151,22 +148,19 @@ function fixMantissa(mantissa){
             exp--;
         }
 
-        console.log('MANTISSA: ', mantissa);
-
-        console.log('CTR: ', ctr);
-        console.log('EXP: ', exp);
+        
 
         var sbstring = mantissa.substring(offset+ctr+2);
 
-        console.log('SUBSTRING!!!: ', sbstring);
+        
     
         result = result + "1" + "." + sbstring;
 
         
 
-        // result = parseFloat(mantissa).toFixed(32) * (base ** ctr);
+        
 
-        console.log("New result: ", result);
+        
 
         
 
@@ -174,7 +168,7 @@ function fixMantissa(mantissa){
         //consider the case 1 (e.g. 1111.101). FIND THE DECIMAL POINT.
         
         for(var i = offset+1; i <= mantissa.length - (offset+1); i++){
-            console.log('CHARAT: ', mantissa.charAt(i));
+            
             if(mantissa.charAt(i) === "."){
                 break;
             }
@@ -183,20 +177,16 @@ function fixMantissa(mantissa){
             exp++;
         }
 
-        console.log('MANTISSA: ', mantissa);
-
-        console.log('CTR: ', ctr);
-        console.log('EXP: ', exp);
+        
 
         var sbstring = mantissa.substring(offset+1, offset+exp+1);
         var sbstring2 = mantissa.substring(offset+exp+2);
 
-        console.log('SUB1: ', sbstring);
-        console.log('SUB2: ', sbstring2);
+        
 
         result = result + "1" + "." + sbstring + sbstring2;
 
-        console.log('RESULT: ', result);
+        
     }
 
     const output = {
@@ -211,7 +201,7 @@ function fixMantissa(mantissa){
     }
 
     if(exp <= -15){
-        console.log('EXPEXP: ', exp);
+        
         output.s_cases = "denormalize";
         detectedSpecialCase = "Denormalized";
     }
@@ -248,13 +238,11 @@ function handleDenormalize(mantissa, exp){
     var str1 = "1";
     var str2 = mantissa.substring(mantissa.indexOf(".") + 1);
 
-    console.log('STR1: ', str1);
-    console.log('STR2: ', str2);
-    console.log('ZERO: ', padZero);
+    
 
     result = "0." + padZero + str1 + str2;
 
-    console.log('RESULT: ', result);
+    
 
     fractionBits = padZero + str1 + str2;
 
@@ -269,7 +257,7 @@ function handleDenormalize(mantissa, exp){
 
 function generateOutput(mantissa, exp, s_case){
 
-    console.log('MANTISSA USE: ', mantissa);
+    
 
     var flag = "";
     var exponent_bits = "";
@@ -283,12 +271,11 @@ function generateOutput(mantissa, exp, s_case){
         f_bits: fraction_bits
     }
 
-    console.log('TYPE: ', typeof(mantissa));
+    
     flag = isNegative(mantissa);
-    console.log('FLAG: ', flag);
-    console.log('EXP2: ', exp);
+    
     exponent_bits = padZeroes(5, getExponent(exp));
-    console.log('MANTISSA: ', mantissa);
+    
     fraction_bits = padZeroes(10, mantissa.toString().substring(2));
 
     if(flag === "1"){
@@ -301,9 +288,7 @@ function generateOutput(mantissa, exp, s_case){
         f_bits: fraction_bits
     }
 
-    console.log('Sign Bit: ', output.s_bit);
-    console.log('Exponent Bits: ', output.e_bits);
-    console.log('Fraction Bits: ', output.f_bits);
+    
 
     if(s_case === "infinity"){
         output = {
@@ -391,7 +376,7 @@ function decToBinary(input){
 function fractionalToBinary(input){
     //e.g. 0.625
     var parseFractional = parseFloat(input);
-    console.log('PARSE FRACTIONAL: ', parseFractional);
+    
     var output = "";
     var temp = 0;
 
@@ -409,14 +394,14 @@ function fractionalToBinary(input){
         } 
     }
 
-    console.log('PARSE FRACTIONAL OUTPUT: ', output);
+    
 
     return output;
         
 }
 
 function moveRadixPoint(input, exp){
-    console.log('TYPE: ', typeof(input));
+    
     const isMantissaNegative = isNegative(input);
     const parseExp = parseInt(exp);
     var ctr = parseExp;
@@ -439,8 +424,7 @@ function moveRadixPoint(input, exp){
         num = str1.length + parseExp;
         temp = num;
 
-        console.log('STR1: ', str1);
-        console.log('STR2: ', str2);
+        
 
         if(num <= 0){
             while(temp !== 0){
@@ -450,14 +434,14 @@ function moveRadixPoint(input, exp){
 
             result = "0." + padZero + str1 + str2;
 
-            console.log('RESULT PLS SANA TAMA: ', result);
+            
         } else {
             splitStr = str1.substring(0, num);
             str1 = str1.substring(num);
 
             result = splitStr + "." + str1 + str2;
 
-            console.log('SANA TAMA: ', result);
+            
         }
     }
 
@@ -483,7 +467,7 @@ function moveRadixPoint(input, exp){
             result = str1 + splitStr + "." + str2;
         }
 
-        console.log('RESULT SANA TAMA PLS AYOKO NA: ', result);
+        
     }
 
     if(isMantissaNegative === "1"){
@@ -511,8 +495,7 @@ function countBits(binary){
 }
 
 function padZeroes(bits, binary){
-    console.log('BIT: ', bits);
-    console.log('BINARY: ', binary);
+    
     const zeroes = parseInt(bits) - countBits(binary);
     var output = ""
 
@@ -586,13 +569,13 @@ function handleConvert() {
             mantissa = result.mantissa;
             exp = result.exp;
 
-            console.log('TYPE: ', typeof(mantissa));
+            
 
-            console.log('ISEMPTY: ', result.mantissa);
+            
             binaryMantissa = binaryBuilder(mantissa);
-            console.log('BUILD:' , binaryMantissa); // -- .0000000..00
+            
             binaryMantissa = fixMantissa(binaryMantissa);
-            console.log('FIX: ', binaryMantissa); // -- .00..09..9
+            
 
             mantissa = binaryMantissa.result;
             exp = binaryMantissa.exp;
@@ -614,7 +597,7 @@ function handleConvert() {
             exp = binaryMantissa.exp;
             s_case = binaryMantissa.s_cases;
 
-            console.log('EXP: ', exp);
+            
 
             finalOutput = generateOutput(mantissa, exp, s_case);
         }
@@ -666,10 +649,7 @@ function saveResult() {
 }
 
 function printOutputs(){
-    // console.log('Sign Bit: ', globalResult.s_bit);
-    // console.log('Exponent Bits: ', globalResult.e_bits);
-    // console.log('Fractional Bits: ', globalResult.f_bits);
-    // console.log('Hex: ', resultInHex);
+    
 
     document.getElementById("signBit").innerHTML = globalResult.s_bit;
     document.getElementById("expBit").innerHTML = globalResult.e_bits.substring(0, 3) + " " + globalResult.e_bits.substring(3, 5);

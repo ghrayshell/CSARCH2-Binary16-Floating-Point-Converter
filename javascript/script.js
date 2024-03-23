@@ -200,13 +200,26 @@ function fixMantissa(mantissa){
 
     const output = {
         result: result,
-        exp: exp
+        exp: exp,
+        s_cases: ""
     };
+
+    if(exp > 15){
+        output.s_cases = "infinity";
+    }
+
+    if(exp <= -15){
+        output.s_cases = "denormalize";
+    }
+
+    if(mantissa === 0){
+        output.s_cases = "zero";
+    }
 
     return output;
 }
 
-function generateOutput(mantissa, exp){
+function generateOutput(mantissa, exp, s_case){
 
     console.log('MANTISSA USE: ', mantissa);
 
@@ -243,6 +256,26 @@ function generateOutput(mantissa, exp){
     console.log('Sign Bit: ', output.s_bit);
     console.log('Exponent Bits: ', output.e_bits);
     console.log('Fraction Bits: ', output.f_bits);
+
+    if(s_case === "infinity"){
+        output = {
+            s_bit: flag,
+            e_bits: "11111",
+            f_bits: "0000000000"
+        }
+    }
+
+    if(s_case === "zero"){
+        output = {
+            s_bit: flag,
+            e_bits: "00000",
+            f_bits: "0000000000"
+        }
+    }
+
+    // if(s_case === "denormalize"){
+
+    // }
 
     return output;
 }
@@ -328,77 +361,6 @@ function fractionalToBinary(input){
     return output;
         
 }
-
-// function moveRadixPoint(input, exp){
-//     const isMantissaNegative = isNegative(input);
-//     const parseExp = parseInt(exp);
-//     const number = parseFloat(input);
-//     var offset = 0;
-//     var result = "";
-//     var ctr = parseInt(exp);
-//     var str1 = "";
-//     var str2 = "";
-
-//     // const notationBuilder = number + "e" + parseExp;
-//     // const parseNotation = parseFloat(notationBuilder);
-
-//     // console.log(parseNotation);
-
-//     // const output = {
-//     //     mantissa: parseNotation,
-//     //     exp : 0
-//     // };
-
-//     // INPUT: 5.5025 x 10 ^ 
-//     // 5.025
-//     // RESULT: 0.005025 x 10 ^ 0
-
-//     if(isMantissaNegative === "1"){
-//         offset++;
-//     }
-
-//     if(parseExp < 0){
-//         //move radix point to the left until exp is 0
-//         var str1 = input.substring(input.indexOf(".") - 1, input.indexOf(".") + 1);
-//         var str2 = input.substring(input.indexOf(".") + 1);
-//         var temp = str1;
-//         result = str1 + str2;
-
-//         console.log('STR1: ', str1);
-//         console.log('STR2: ', str2);
-        
-//         console.log('COMBINED: ', result);
-
-//         while(ctr != 0){
-//             if(result.charAt(0) !== "."){
-//                 str1 = swapTwoChar(str1);
-//                 temp = str1;
-//                 str2 = temp.charAt(1) + str2;
-
-//             } else {
-//                 str1 = swapTwoChar("0.");
-//                 temp = str1;
-//                 str2 = temp.charAt(1) + str2;
-//             }
-
-//             ctr++;
-//         }
-
-//         result = str1 + str2;
-
-//         if(result.charAt(0) === "."){
-//             result = "0" + result;
-//         }
-
-//         console.log('RESULT: ', result);
-        
-
-//     } else {
-//         //move radix point to the right until exp is 0
-//     }
-
-//     return output;
-// }
 
 function moveRadixPoint(input, exp){
     console.log('TYPE: ', typeof(input));
@@ -521,6 +483,16 @@ function padZeroes(bits, binary){
     }
 }
 
+function validateExp(exp, regex){
+    var flag = false;
+
+    if(exp.match(regex)){
+        flag = true;
+    }
+
+    return flag;
+}
+
 function handleConvert() {
     var mantissa = document.getElementById("inputBox").value;
     var exp = document.getElementById("expBox").value;
@@ -529,13 +501,26 @@ function handleConvert() {
     var result = {}
     var finalOutput = "";
     var binaryMantissa = "";
+    var s_case = "";
 
     var regex = getRegex(mode);
 
     const validateFlag = validateMantissa(mantissa, regex);
+    const isExpCorrect = validateExp(exp, /^[0-9]+$/);
 
-    if(!validateFlag){
-        alert("WRONG!");
+    if(!isExpCorrect || !validateFlag){
+
+        globalResult = {
+            s_bit: "X",
+            e_bits: "11111",
+            f_bits: "01XXXXXXXX"
+        }
+
+        resultInHex = "XXXX";
+
+        printOutputs();
+
+
     } else {
         if(mode === "decimal"){
             result = moveRadixPoint(mantissa, exp);
@@ -552,8 +537,14 @@ function handleConvert() {
 
             mantissa = binaryMantissa.result;
             exp = binaryMantissa.exp;
+            s_case = binaryMantissa.s_cases;
 
-            finalOutput = generateOutput(mantissa, exp);
+            finalOutput = generateOutput(mantissa, exp, s_case);
+
+            globalResult = finalOutput;
+            resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
+
+            printOutputs();
 
             validInput = mantissa;
             expInput = exp;
@@ -568,19 +559,24 @@ function handleConvert() {
 
             mantissa = binaryMantissa.result;
             exp = binaryMantissa.exp;
+            s_case = binaryMantissa.s_cases;
 
             console.log('EXP: ', exp);
 
-            finalOutput = generateOutput(mantissa, exp);
+            finalOutput = generateOutput(mantissa, exp, s_case);
 
             validInput = mantissa;
             expInput = exp;
             baseInput = 2;
         }
 
-        globalResult = finalOutput;
-        resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
-        printOutputs();
+            globalResult = finalOutput;
+            resultInHex = binaryToHex(finalOutput.s_bit + finalOutput.e_bits + finalOutput.f_bits);
+
+            printOutputs();
+
+            
+        }
     }
 }
 

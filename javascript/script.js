@@ -239,6 +239,15 @@ function resetValues() {
     document.getElementById("inputBox").value = "";
     document.getElementById("expBox").value = "";
     getInputFormat();
+
+    document.getElementById("signBit").innerHTML = "X";
+    document.getElementById("expBit").innerHTML = "XXX XX";
+    document.getElementById("fracPart").innerHTML = "XX XXXX XXXX";
+
+    document.getElementById("HEX1").innerHTML = "X";
+    document.getElementById("HEX2").innerHTML = "X";
+    document.getElementById("HEX3").innerHTML = "X";
+    document.getElementById("HEX4").innerHTML = "X";
 }
 
 function decToBinary(input){
@@ -425,10 +434,19 @@ function saveResult() {
 }
 
 function printOutputs(){
-    console.log('Sign Bit: ', globalResult.s_bit);
-    console.log('Exponent Bits: ', globalResult.e_bits);
-    console.log('Fractional Bits: ', globalResult.f_bits);
-    console.log('Hex: ', resultInHex);
+    // console.log('Sign Bit: ', globalResult.s_bit);
+    // console.log('Exponent Bits: ', globalResult.e_bits);
+    // console.log('Fractional Bits: ', globalResult.f_bits);
+    // console.log('Hex: ', resultInHex);
 
-    return "Sign Bit: " + globalResult.s_bit + "\n" + "Exponent Bits: " + globalResult.e_bits + "\n" + "Fractional Bits: " + globalResult.f_bits + "\n" + "Hex: " + resultInHex + "\n"; 
+    document.getElementById("signBit").innerHTML = globalResult.s_bit;
+    document.getElementById("expBit").innerHTML = globalResult.e_bits.substring(0, 3) + " " + globalResult.e_bits.substring(3, 5);
+    document.getElementById("fracPart").innerHTML = globalResult.f_bits.substring(0, 2) + " " + globalResult.f_bits.substring(2, 6) + " " + globalResult.f_bits.substring(6, 10);
+
+    document.getElementById("HEX1").innerHTML = resultInHex.substring(0, 1);
+    document.getElementById("HEX2").innerHTML = resultInHex.substring(1, 2);
+    document.getElementById("HEX3").innerHTML = resultInHex.substring(2, 3);
+    document.getElementById("HEX4").innerHTML = resultInHex.substring(3, 4);
+
+    // return "Sign Bit: " + globalResult.s_bit + "\n" + "Exponent Bits: " + globalResult.e_bits + "\n" + "Fractional Bits: " + globalResult.f_bits + "\n" + "Hex: " + resultInHex + "\n"; 
 }

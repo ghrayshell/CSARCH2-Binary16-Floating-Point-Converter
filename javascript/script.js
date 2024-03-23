@@ -112,12 +112,7 @@ function binaryBuilder(mantissa){
         fractionalPart = parseMantissa - wholeNum;
     }
 
-    
-
     output = output + decToBinary(wholeNum) + "." + fractionalToBinary(fractionalPart.toFixed(32).toString());
-
-
-    
 
     return output;
 }
@@ -148,22 +143,8 @@ function fixMantissa(mantissa){
             exp--;
         }
 
-        
-
         var sbstring = mantissa.substring(offset+ctr+2);
-
-        
-    
         result = result + "1" + "." + sbstring;
-
-        
-
-        
-
-        
-
-        
-
     } else {
         //consider the case 1 (e.g. 1111.101). FIND THE DECIMAL POINT.
         
@@ -177,16 +158,10 @@ function fixMantissa(mantissa){
             exp++;
         }
 
-        
-
         var sbstring = mantissa.substring(offset+1, offset+exp+1);
         var sbstring2 = mantissa.substring(offset+exp+2);
 
-        
-
         result = result + "1" + "." + sbstring + sbstring2;
-
-        
     }
 
     const output = {
@@ -238,12 +213,7 @@ function handleDenormalize(mantissa, exp){
     var str1 = "1";
     var str2 = mantissa.substring(mantissa.indexOf(".") + 1);
 
-    
-
     result = "0." + padZero + str1 + str2;
-
-    
-
     fractionBits = padZero + str1 + str2;
 
     const output = {
@@ -256,14 +226,9 @@ function handleDenormalize(mantissa, exp){
 }
 
 function generateOutput(mantissa, exp, s_case){
-
-    
-
     var flag = "";
     var exponent_bits = "";
     var fraction_bits = "";
-
-    //testing 
 
     var output = {
         s_bit: flag,
@@ -271,11 +236,8 @@ function generateOutput(mantissa, exp, s_case){
         f_bits: fraction_bits
     }
 
-    
     flag = isNegative(mantissa);
-    
     exponent_bits = padZeroes(5, getExponent(exp));
-    
     fraction_bits = padZeroes(10, mantissa.toString().substring(2));
 
     if(flag === "1"){
@@ -287,8 +249,6 @@ function generateOutput(mantissa, exp, s_case){
         e_bits: exponent_bits,
         f_bits: fraction_bits
     }
-
-    
 
     if(s_case === "infinity"){
         output = {
@@ -346,6 +306,8 @@ function resetValues() {
     document.getElementById("HEXBOX-4").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
 
     document.getElementById("saveBtn").disabled = true;
+    document.getElementById("saveBtn").removeAttribute("enabled");
+    document.getElementById("saveBtn").className = "disabled";
     document.getElementById("saveBtn").style.backgroundColor = "#1F2529";
     document.getElementById("saveBtn").style.cursor = "not-allowed";
     document.getElementById("saveBtn").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
@@ -394,10 +356,7 @@ function fractionalToBinary(input){
         } 
     }
 
-    
-
-    return output;
-        
+    return output;    
 }
 
 function moveRadixPoint(input, exp){
@@ -424,8 +383,6 @@ function moveRadixPoint(input, exp){
         num = str1.length + parseExp;
         temp = num;
 
-        
-
         if(num <= 0){
             while(temp !== 0){
                 padZero = padZero + "0";
@@ -433,15 +390,11 @@ function moveRadixPoint(input, exp){
             }
 
             result = "0." + padZero + str1 + str2;
-
-            
         } else {
             splitStr = str1.substring(0, num);
             str1 = str1.substring(num);
 
             result = splitStr + "." + str1 + str2;
-
-            
         }
     }
 
@@ -466,8 +419,6 @@ function moveRadixPoint(input, exp){
 
             result = str1 + splitStr + "." + str2;
         }
-
-        
     }
 
     if(isMantissaNegative === "1"){
@@ -553,12 +504,9 @@ function handleConvert() {
         }
 
         detectedSpecialCase = "NaN";
-
         resultInHex = "XXXX";
 
         printOutputs();
-
-
     } else {
         if(mode === "decimal"){
             validInput = mantissa;
@@ -603,6 +551,8 @@ function handleConvert() {
         }
 
         document.getElementById("saveBtn").disabled = false;
+        document.getElementById("saveBtn").removeAttribute("disabled");
+        document.getElementById("saveBtn").className = "enabled";
         document.getElementById("saveBtn").style.backgroundColor = "#344955";
         document.getElementById("saveBtn").style.cursor = "pointer";
         document.getElementById("saveBtn").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040, 0px 4px 4px #00000040";
@@ -626,16 +576,6 @@ function binaryToHex(binary) {
     return hex.toUpperCase(); 
 }
 
-function convertBinary() {
-    // document.getElementById("inputPrompt").innerHTML = "BINARY CONVERTED";
-
-    var inputFormat = document.getElementById("formatSelect").value;
-}
-
-function convertDecimal() {
-    // document.getElementById("inputPrompt").innerHTML = "DECIMAL CONVERTED";
-}
-
 function saveResult() {
   
     const link = document.createElement("a");
@@ -649,8 +589,8 @@ function saveResult() {
 }
 
 function printOutputs(){
+    document.getElementById("specialCase").innerHTML = detectedSpecialCase;
     
-
     document.getElementById("signBit").innerHTML = globalResult.s_bit;
     document.getElementById("expBit").innerHTML = globalResult.e_bits.substring(0, 3) + " " + globalResult.e_bits.substring(3, 5);
     document.getElementById("fracPart").innerHTML = globalResult.f_bits.substring(0, 2) + " " + globalResult.f_bits.substring(2, 6) + " " + globalResult.f_bits.substring(6, 10);
@@ -675,7 +615,4 @@ function printOutputs(){
     document.getElementById("HEXBOX-3").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
     document.getElementById("HEXBOX-4").style.backgroundColor = "#d9d9d9";
     document.getElementById("HEXBOX-4").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
-
-
-    // return "Sign Bit: " + globalResult.s_bit + "\n" + "Exponent Bits: " + globalResult.e_bits + "\n" + "Fractional Bits: " + globalResult.f_bits + "\n" + "Hex: " + resultInHex + "\n"; 
 }

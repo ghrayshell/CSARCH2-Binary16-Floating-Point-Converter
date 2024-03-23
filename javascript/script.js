@@ -259,6 +259,22 @@ function resetValues() {
     document.getElementById("HEX2").innerHTML = "X";
     document.getElementById("HEX3").innerHTML = "X";
     document.getElementById("HEX4").innerHTML = "X";
+
+    document.getElementById("SIGNBOX").style.backgroundColor = "#666666";
+    document.getElementById("SIGNBOX").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+    document.getElementById("FRACBOX").style.backgroundColor = "#666666";
+    document.getElementById("FRACBOX").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+    document.getElementById("EXPBOX").style.backgroundColor = "#666666";
+    document.getElementById("EXPBOX").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+
+    document.getElementById("HEXBOX").style.backgroundColor = "#666666";
+    document.getElementById("HEXBOX").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+    document.getElementById("HEXBOX-2").style.backgroundColor = "#666666";
+    document.getElementById("HEXBOX-2").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+    document.getElementById("HEXBOX-3").style.backgroundColor = "#666666";
+    document.getElementById("HEXBOX-3").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
+    document.getElementById("HEXBOX-4").style.backgroundColor = "#666666";
+    document.getElementById("HEXBOX-4").style.boxShadow = "inset 0px 4px 4px #00000040, inset 0px 4px 4px #00000040";
 }
 
 function decToBinary(input){
@@ -605,6 +621,23 @@ function printOutputs(){
     document.getElementById("HEX2").innerHTML = resultInHex.substring(1, 2);
     document.getElementById("HEX3").innerHTML = resultInHex.substring(2, 3);
     document.getElementById("HEX4").innerHTML = resultInHex.substring(3, 4);
+
+    document.getElementById("SIGNBOX").style.backgroundColor = "#d9d9d9";
+    document.getElementById("SIGNBOX").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+    document.getElementById("FRACBOX").style.backgroundColor = "#d9d9d9";
+    document.getElementById("FRACBOX").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+    document.getElementById("EXPBOX").style.backgroundColor = "#d9d9d9";
+    document.getElementById("EXPBOX").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+
+    document.getElementById("HEXBOX").style.backgroundColor = "#d9d9d9";
+    document.getElementById("HEXBOX").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+    document.getElementById("HEXBOX-2").style.backgroundColor = "#d9d9d9";
+    document.getElementById("HEXBOX-2").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+    document.getElementById("HEXBOX-3").style.backgroundColor = "#d9d9d9";
+    document.getElementById("HEXBOX-3").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+    document.getElementById("HEXBOX-4").style.backgroundColor = "#d9d9d9";
+    document.getElementById("HEXBOX-4").style.boxShadow = "0px 4px 4px #00000040, 0px 4px 4px #00000040";
+
 
     // return "Sign Bit: " + globalResult.s_bit + "\n" + "Exponent Bits: " + globalResult.e_bits + "\n" + "Fractional Bits: " + globalResult.f_bits + "\n" + "Hex: " + resultInHex + "\n"; 
 }

@@ -3,7 +3,7 @@ var expInput = "";
 var baseInput = "";
 var globalResult = {};
 var resultInHex = "";
-var detectedSpecialCase = "";
+var detectedSpecialCase = "Normal";
 
 function getInputFormat() {
     var inputFormat = document.getElementById("formatSelect").value;
@@ -590,7 +590,7 @@ function saveResult() {
 
 function printOutputs(){
     document.getElementById("specialCase").innerHTML = detectedSpecialCase;
-    
+
     document.getElementById("signBit").innerHTML = globalResult.s_bit;
     document.getElementById("expBit").innerHTML = globalResult.e_bits.substring(0, 3) + " " + globalResult.e_bits.substring(3, 5);
     document.getElementById("fracPart").innerHTML = globalResult.f_bits.substring(0, 2) + " " + globalResult.f_bits.substring(2, 6) + " " + globalResult.f_bits.substring(6, 10);

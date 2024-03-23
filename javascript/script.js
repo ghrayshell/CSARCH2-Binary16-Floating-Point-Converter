@@ -3,6 +3,7 @@ var expInput = "";
 var baseInput = "";
 var globalResult = {};
 var resultInHex = "";
+var detectedSpecialCase = "";
 
 function getInputFormat() {
     var inputFormat = document.getElementById("formatSelect").value;
@@ -206,14 +207,18 @@ function fixMantissa(mantissa){
 
     if(exp > 15){
         output.s_cases = "infinity";
+        detectedSpecialCase = "Infinity";
     }
 
     if(exp <= -15){
+        console.log('EXPEXP: ', exp);
         output.s_cases = "denormalize";
+        detectedSpecialCase = "Denormalized";
     }
 
     if(mantissa === 0){
         output.s_cases = "zero";
+        detectedSpecialCase = "Zero";
     }
 
     return output;
@@ -564,6 +569,8 @@ function handleConvert() {
             f_bits: "01XXXXXXXX"
         }
 
+        detectedSpecialCase = "NaN";
+
         resultInHex = "XXXX";
 
         printOutputs();
@@ -601,7 +608,7 @@ function handleConvert() {
             mantissa = result.mantissa;
             exp = result.exp;
 
-            binaryMantissa = fixMantissa(mantissa.toString());
+            binaryMantissa = fixMantissa(mantissa);
 
             mantissa = binaryMantissa.result;
             exp = binaryMantissa.exp;
